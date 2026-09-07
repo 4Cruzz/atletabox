@@ -1,32 +1,181 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Painel inicial — AtletaBox</title><link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Painel administrativo do AchadoBox.">
+  <title>Painel — AchadoBox</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<header class="header"><div class="container nav"><a class="logo" href="index.html">Atleta<span>Box</span></a><a class="admin-link" href="index.html">Ver loja</a></div></header>
+<header class="header">
+  <div class="container nav">
+    <a class="logo" href="index.html">Achado<span>Box</span></a>
+    <a class="admin-link" href="index.html">Ver loja</a>
+  </div>
+</header>
+
 <main class="container admin">
-  <div class="section-head"><div><p class="eyebrow">ADMINISTRAÇÃO</p><h1>Painel inicial</h1><p class="muted">Nesta V1 os produtos ficam salvos neste navegador. Depois podemos conectar ao Supabase.</p></div></div>
-  <div class="stats"><div><b id="count">0</b><span>Produtos</span></div><div><b id="categoriesCount">0</b><span>Categorias</span></div><div><b id="featuredCount">0</b><span>Destaques</span></div></div>
+
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">ADMINISTRAÇÃO</p>
+      <h1>Painel inicial</h1>
+      <p class="muted">
+        Nesta versão, os produtos ficam salvos neste navegador.
+      </p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div>
+      <b id="count">0</b>
+      <span>Produtos</span>
+    </div>
+
+    <div>
+      <b id="categoriesCount">0</b>
+      <span>Categorias</span>
+    </div>
+
+    <div>
+      <b id="featuredCount">0</b>
+      <span>Destaques</span>
+    </div>
+  </div>
+
   <form id="productForm" class="panel">
     <h2>Adicionar produto</h2>
+
     <div class="form-grid">
-      <label>Nome<input name="title" required placeholder="Ex.: Luva de academia"></label>
-      <label>Categoria<select name="category" required><option value="academia">Academia</option><option value="futebol">Futebol</option><option value="performance">Performance</option><option value="ofertas">Ofertas</option></select></label>
-      <label>Preço (R$)<input name="price" type="number" min="0" step="0.01" required></label>
-      <label>Avaliação<input name="rating" type="number" min="0" max="5" step="0.1" value="4.8"></label>
-      <label>Vendas aproximadas<input name="sales" type="number" min="0" value="100"></label>
-      <label>URL da imagem<input name="image" type="url" placeholder="https://..."></label>
-      <label>Link de afiliado<input name="affiliate" type="url" required placeholder="Cole aqui seu link do Mercado Livre"></label>
-      <label>Marca (opcional)<input name="brand" placeholder="Ex.: Nike"></label>
+
+      <label>
+        Nome
+        <input
+          name="title"
+          required
+          placeholder="Ex.: Fone Bluetooth sem fio"
+        >
+      </label>
+
+      <label>
+        Categoria
+        <select name="category" required>
+          <option value="ofertas">🔥 Ofertas</option>
+          <option value="tecnologia">📱 Tecnologia</option>
+          <option value="casa">🏠 Casa</option>
+          <option value="esportes">🏋️ Esportes</option>
+          <option value="moda">👕 Moda</option>
+          <option value="beleza">✨ Beleza</option>
+        </select>
+      </label>
+
+      <label>
+        Preço (R$)
+        <input
+          name="price"
+          type="number"
+          min="0"
+          step="0.01"
+          required
+        >
+      </label>
+
+      <label>
+        Avaliação
+        <input
+          name="rating"
+          type="number"
+          min="0"
+          max="5"
+          step="0.1"
+          value="4.8"
+        >
+      </label>
+
+      <label>
+        Vendas aproximadas
+        <input
+          name="sales"
+          type="number"
+          min="0"
+          value="100"
+        >
+      </label>
+
+      <label>
+        URL da imagem
+        <input
+          name="image"
+          type="url"
+          placeholder="https://..."
+        >
+      </label>
+
+      <label>
+        Link de afiliado
+        <input
+          name="affiliate"
+          type="url"
+          required
+          placeholder="Cole aqui seu link de afiliado do Mercado Livre"
+        >
+      </label>
+
+      <label>
+        Marca (opcional)
+        <input
+          name="brand"
+          placeholder="Ex.: Samsung"
+        >
+      </label>
+
     </div>
-    <label>Descrição<textarea name="description" rows="4" placeholder="Por que esse produto vale a pena?"></textarea></label>
-    <label class="check"><input name="featured" type="checkbox" checked> Mostrar nos destaques</label>
-    <button class="btn" type="submit">Adicionar produto</button>
+
+    <label>
+      Descrição
+      <textarea
+        name="description"
+        rows="4"
+        placeholder="Por que esse produto vale a pena?"
+      ></textarea>
+    </label>
+
+    <label class="check">
+      <input
+        name="featured"
+        type="checkbox"
+        checked
+      >
+      Mostrar nos destaques
+    </label>
+
+    <button class="btn" type="submit">
+      Adicionar produto
+    </button>
   </form>
-  <div class="panel"><div class="section-head"><h2>Produtos cadastrados</h2><button id="resetDemo" class="danger">Restaurar demonstração</button></div><div id="adminList"></div></div>
+
+  <div class="panel">
+
+    <div class="section-head">
+      <h2>Produtos cadastrados</h2>
+
+      <button id="resetDemo" class="danger">
+        Restaurar demonstração
+      </button>
+    </div>
+
+    <div id="adminList"></div>
+
+  </div>
+
 </main>
-<script src="app.js"></script><script>initAdmin();</script>
+
+<script src="app.js"></script>
+<script>
+  initAdmin();
+</script>
+
 </body>
 </html>
