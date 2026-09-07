@@ -7,7 +7,6 @@
   <title>Painel — AchadoBox</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 <header class="header">
   <div class="container nav">
@@ -17,165 +16,82 @@
 </header>
 
 <main class="container admin">
+  <section id="loginBox" class="login-wrap">
+    <form id="loginForm" class="panel login-panel">
+      <p class="eyebrow">ÁREA RESTRITA</p>
+      <h1>Entrar no painel</h1>
+      <p class="muted">Use a conta de administrador criada no Supabase.</p>
+      <label>E-mail<input name="email" type="email" required autocomplete="email" placeholder="seuemail@exemplo.com"></label>
+      <label>Senha<input name="password" type="password" required autocomplete="current-password" placeholder="Sua senha"></label>
+      <p id="loginError" class="form-error hidden"></p>
+      <button class="btn" type="submit">Entrar</button>
+    </form>
+  </section>
 
-  <div class="section-head">
-    <div>
-      <p class="eyebrow">ADMINISTRAÇÃO</p>
-      <h1>Painel inicial</h1>
-      <p class="muted">
-        Nesta versão, os produtos ficam salvos neste navegador.
-      </p>
-    </div>
-  </div>
-
-  <div class="stats">
-    <div>
-      <b id="count">0</b>
-      <span>Produtos</span>
-    </div>
-
-    <div>
-      <b id="categoriesCount">0</b>
-      <span>Categorias</span>
-    </div>
-
-    <div>
-      <b id="featuredCount">0</b>
-      <span>Destaques</span>
-    </div>
-  </div>
-
-  <form id="productForm" class="panel">
-    <h2>Adicionar produto</h2>
-
-    <div class="form-grid">
-
-      <label>
-        Nome
-        <input
-          name="title"
-          required
-          placeholder="Ex.: Fone Bluetooth sem fio"
-        >
-      </label>
-
-      <label>
-        Categoria
-        <select name="category" required>
-          <option value="ofertas">🔥 Ofertas</option>
-          <option value="tecnologia">📱 Tecnologia</option>
-          <option value="casa">🏠 Casa</option>
-          <option value="esportes">🏋️ Esportes</option>
-          <option value="moda">👕 Moda</option>
-          <option value="beleza">✨ Beleza</option>
-        </select>
-      </label>
-
-      <label>
-        Preço (R$)
-        <input
-          name="price"
-          type="number"
-          min="0"
-          step="0.01"
-          required
-        >
-      </label>
-
-      <label>
-        Avaliação
-        <input
-          name="rating"
-          type="number"
-          min="0"
-          max="5"
-          step="0.1"
-          value="4.8"
-        >
-      </label>
-
-      <label>
-        Vendas aproximadas
-        <input
-          name="sales"
-          type="number"
-          min="0"
-          value="100"
-        >
-      </label>
-
-      <label>
-        URL da imagem
-        <input
-          name="image"
-          type="url"
-          placeholder="https://..."
-        >
-      </label>
-
-      <label>
-        Link de afiliado
-        <input
-          name="affiliate"
-          type="url"
-          required
-          placeholder="Cole aqui seu link de afiliado do Mercado Livre"
-        >
-      </label>
-
-      <label>
-        Marca (opcional)
-        <input
-          name="brand"
-          placeholder="Ex.: Samsung"
-        >
-      </label>
-
-    </div>
-
-    <label>
-      Descrição
-      <textarea
-        name="description"
-        rows="4"
-        placeholder="Por que esse produto vale a pena?"
-      ></textarea>
-    </label>
-
-    <label class="check">
-      <input
-        name="featured"
-        type="checkbox"
-        checked
-      >
-      Mostrar nos destaques
-    </label>
-
-    <button class="btn" type="submit">
-      Adicionar produto
-    </button>
-  </form>
-
-  <div class="panel">
-
+  <section id="adminApp" class="hidden">
     <div class="section-head">
-      <h2>Produtos cadastrados</h2>
-
-      <button id="resetDemo" class="danger">
-        Restaurar demonstração
-      </button>
+      <div>
+        <p class="eyebrow">ADMINISTRAÇÃO</p>
+        <h1>Painel AchadoBox</h1>
+        <p class="muted">Os produtos ficam salvos no Supabase e aparecem para todos os visitantes.</p>
+      </div>
+      <button id="logoutBtn" class="secondary-btn">Sair</button>
     </div>
 
-    <div id="adminList"></div>
+    <div class="stats">
+      <div><b id="count">0</b><span>Produtos</span></div>
+      <div><b id="categoriesCount">0</b><span>Categorias</span></div>
+      <div><b id="featuredCount">0</b><span>Destaques</span></div>
+    </div>
 
-  </div>
+    <form id="productForm" class="panel">
+      <div class="section-head">
+        <h2 id="formTitle">Adicionar produto</h2>
+        <button id="cancelEdit" type="button" class="secondary-btn hidden">Cancelar edição</button>
+      </div>
 
+      <input name="id" type="hidden">
+
+      <div class="form-grid">
+        <label>Nome<input name="title" required placeholder="Ex.: Fone Bluetooth sem fio"></label>
+        <label>Categoria
+          <select name="category" required>
+            <option value="ofertas">🔥 Ofertas</option>
+            <option value="tecnologia">📱 Tecnologia</option>
+            <option value="casa">🏠 Casa</option>
+            <option value="esportes">🏋️ Esportes</option>
+            <option value="moda">👕 Moda</option>
+            <option value="beleza">✨ Beleza</option>
+          </select>
+        </label>
+        <label>Preço (R$)<input name="price" type="number" min="0" step="0.01" required></label>
+        <label>Avaliação<input name="rating" type="number" min="0" max="5" step="0.1" value="4.8"></label>
+        <label>Vendas aproximadas<input name="sales" type="number" min="0" value="100"></label>
+        <label>URL da imagem<input name="image" type="url" placeholder="https://..."></label>
+        <label>Link de afiliado<input name="affiliate" type="url" required placeholder="Cole seu link de afiliado do Mercado Livre"></label>
+        <label>Marca (opcional)<input name="brand" placeholder="Ex.: Samsung"></label>
+      </div>
+
+      <label>Descrição<textarea name="description" rows="4" placeholder="Por que esse produto vale a pena?"></textarea></label>
+      <label class="check"><input name="featured" type="checkbox" checked> Mostrar nos destaques</label>
+
+      <p id="formMessage" class="form-message hidden"></p>
+      <button id="submitBtn" class="btn" type="submit">Adicionar produto</button>
+    </form>
+
+    <div class="panel">
+      <div class="section-head">
+        <h2>Produtos cadastrados</h2>
+        <button id="seedDemo" class="secondary-btn" type="button">Adicionar demonstração</button>
+      </div>
+      <div id="adminList"><p class="empty">Carregando...</p></div>
+    </div>
+  </section>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 <script src="app.js"></script>
-<script>
-  initAdmin();
-</script>
-
+<script>initAdmin();</script>
 </body>
 </html>

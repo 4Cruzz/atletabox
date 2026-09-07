@@ -7,7 +7,6 @@
   <title>Produto — AchadoBox</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 <header class="header">
   <div class="container nav">
@@ -15,20 +14,13 @@
     <a class="admin-link" href="index.html">← Voltar</a>
   </div>
 </header>
-
 <main class="container">
-  <div id="productDetail"></div>
+  <div id="productDetail"><p class="empty">Carregando produto...</p></div>
 </main>
-
-<footer>
-  <div class="container">
-    AchadoBox · Links de afiliado podem gerar comissão.
-  </div>
-</footer>
-
+<footer><div class="container">AchadoBox · Links de afiliado podem gerar comissão.</div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 <script src="app.js"></script>
-<script>
-  renderProductPage();
-</script>
+<script>renderProductPage();</script>
 </body>
 </html>
